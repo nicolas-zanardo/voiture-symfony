@@ -17,15 +17,18 @@ APP_SECRET_LOCAL=f326d1a00dc7227ae196b7eb6faee7ec
 # 4 - Create database
 php bin/console doctrine:database:create
 
-# 5 - Create DATA Fixture
+# 5 - Migration
+php bin/console doctrine/migrations:migrate
+
+# 6 - Create DATA Fixture
 php bin/console doctrine:fixtures:load
 
-# 6 - create USER on website
+# 7 - create USER on website
 
-# 7 - Give administrator access rights
+# 8 - Give administrator access rights
 sudo mysql -u root -p
 use cars_park
-UPDATE user SET role = 'ROLE_ADMIN' WHERE id = YOUR_ID;
+UPDATE user SET roles = 'ROLE_ADMIN' WHERE id = YOUR_ID;
 # If you don't know your ID 
 SELECT * FROM user 
 ```
