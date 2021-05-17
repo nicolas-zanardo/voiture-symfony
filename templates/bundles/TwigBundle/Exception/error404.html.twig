@@ -1,0 +1,23 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div data-aos="zoom-in">
+            <div class="card p-2 ">
+                <h1 class="my-5">Page not found 404</h1>
+                <p class="my-5">
+                    The requested page couldn't be located. Checkout for any URL
+                    misspelling or <a href="{{ path('accueil') }}">return to the homepage</a>.
+                </p>
+                <div class="d-flex justify-content-center">
+                    <a href="{{ path('accueil') }}" class="w-100">
+                        <button class="my-5 btn btn-primary w-100">
+                            Accueil
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
