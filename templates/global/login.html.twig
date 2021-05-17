@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	login
+{% endblock %}
+
+{% block titlePage %}
+	login
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{% if error %}
+			<div class="alert alert-danger">{{error.messageKey | trans(error.messagedata, 'security')}}</div>
+		{% endif %}
+		<div class="card p-2 mb-2">
+			<h5>vous pouvez vous connecter:</h5>
+			<p>username: admin</p>
+			<p>password: admin</p>
+			<hr>
+			<h6>Il est possible aussi de créer un compte</h6>
+		</div>
+		<form action="{{path("login")}}" method="POST">
+			<div class="form-group">
+				<label for="">Login:
+				</label>
+				<input type="text" required name="_username" class="form-control" value="{{lastUserName}}">
+			</div>
+			<div class=" form-group">
+				<label for="">Paswword:
+				</label>
+				<input type="password" required name="_password" class="form-control">
+			</div>
+			<input type="submit" class="btn btn-primary" value="log">
+		</form>
+	</div>
+{% endblock %}

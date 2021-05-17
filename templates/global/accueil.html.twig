@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Accueil
+{% endblock %}
+
+{% block titlePage %}
+	Accueil
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('/css/accueil.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div data-aos="flip-right">
+			<div class="card present p-5">
+				<h1>Site Demo</h1>
+				<h4>Vous pouvez vous connectez sur la partie admin :</h4>
+				<p>username: admin</p>
+				<p>password: admin</p>
+				<hr>
+				<h5>Vous pouvez également créer un compte user</h5>
+			</div>
+		</div>
+	</div>
+{% endblock %}

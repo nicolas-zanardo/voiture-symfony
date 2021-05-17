@@ -1,0 +1,57 @@
+{% if (app.request.attributes.get('_route')) %}
+	{% set currentPath = path(app.request.attributes.get('_route'),
+    app.request.attributes.get('_route_params')) %}
+{% endif %}
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+	<a class="navbar-brand" href="{{path("accueil")}}"><img src="{{asset('/images/logo.png')}}" width="150"></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarColor02">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link {% if (app.request.attributes.get('_route')) %}{{ (currentPath == path('accueil')) ? 'active' : ''}}{% endif %}" href="{{path("accueil")}}">
+					Accueil
+				</a>
+			</li>
+			{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+				<li class="nav-item">
+					<a class="nav-link {% if (app.request.attributes.get('_route')) %}{{ (currentPath == path('voitures')) ? 'active' : ''}}{% endif %}" href="{{path("voitures")}}">
+						Voitures
+					</a>
+				</li>
+			{% endif %}
+			{% if is_granted('ROLE_ADMIN') %}
+				<li class="nav-item">
+					<a class="nav-link {% if (app.request.attributes.get('_route')) %}{{ (currentPath == path('admin')) ? 'active' : ''}}{% endif %}" href="{{path("admin")}}">
+						Admin
+					</a>
+				</li>
+			{% endif %}
+		</ul>
+		<ul class="navbar-nav">
+			{% if not app.user %}
+				<li class="nav-item">
+					<a class="nav-link {% if (app.request.attributes.get('_route')) %}{{ (currentPath == path('inscription')) ? 'active' : ''}}{% endif %}" href="{{path("inscription")}}">
+						<i class="fas fa-user-plus fa-lg"></i>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link {% if (app.request.attributes.get('_route')) %}{{ (currentPath == path('login')) ? 'active' : ''}}{% endif %}" href="{{path("login")}}">
+						<i class="fas fa-sign-in-alt fa-lg"></i>
+					</a>
+				</li>
+			{% else %}
+				<li class="nav-item">
+					<a class="nav-link {% if (app.request.attributes.get('_route')) %}{{ (currentPath == path('deconnexion')) ? 'active' : ''}}{% endif %}" href="{{path("deconnexion")}}">
+						<i class="fas fa-sign-out-alt fa-lg"></i>
+					</a>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+</nav>
